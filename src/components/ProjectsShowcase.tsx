@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ExternalLink } from "lucide-react";
+import HoverScrollCard from "./ui/hover-scroll";
 
 interface Project {
   id: string;
@@ -23,6 +24,24 @@ const ProjectsShowcase = ({
 }: ProjectsShowcaseProps) => {
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
+
+  /**
+   * For calculating image dynamic height for scroll effect
+   */
+  const containerRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+  const [scrollDistance, setScrollDistance] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  useEffect(() => {
+    if (!imageLoaded || !imageRef.current || !containerRef.current) return;
+
+    const imageHeight = imageRef.current.offsetHeight;
+    const containerHeight = containerRef.current.offsetHeight;
+    const distance = imageHeight - containerHeight;
+
+    setScrollDistance(distance > 0 ? -distance : 0); // negative because we scroll up
+  }, [imageLoaded]);
 
   const filteredProjects =
     activeFilter === "all"
@@ -93,19 +112,7 @@ const ProjectsShowcase = ({
               onMouseLeave={() => setHoveredProject(null)}
             >
               <Card className="h-full overflow-hidden border border-border hover:shadow-lg transition-shadow duration-300">
-                <div className="relative overflow-hidden aspect-video">
-                  <img
-                    src={project.imageUrl}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 ease-in-out"
-                    style={{
-                      transform:
-                        hoveredProject === project.id
-                          ? "scale(1.05)"
-                          : "scale(1)",
-                    }}
-                  />
-                </div>
+                <HoverScrollCard imageUrl={project.imageUrl} />
                 <CardContent className="p-5">
                   <div className="flex flex-wrap gap-2 mb-3">
                     {project.tags.map((tag) => (
@@ -169,22 +176,20 @@ const defaultProjects: Project[] = [
   },
   {
     id: "2",
-    title: "Financial Dashboard",
+    title: "Buzau360",
     description:
-      "Interactive dashboard with real-time data visualization and predictive analytics.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-    tags: ["dashboard", "data", "analytics"],
+      "Sleek & smooth customizable website for local news with a customized theme.",
+    imageUrl: "featured/buzau360.png",
+    tags: ["news", "web"],
     link: "#",
   },
   {
     id: "3",
-    title: "Healthcare Mobile App",
+    title: "Ramnic365",
     description:
-      "Patient-centered mobile application for appointment scheduling and health monitoring.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
-    tags: ["mobile", "healthcare", "app"],
+      "Custom made news website featuring latest local news, and a portal of information for a town.",
+    imageUrl: "featured/ramnic365.png",
+    tags: ["news", "web"],
     link: "#",
   },
   {
@@ -205,16 +210,6 @@ const defaultProjects: Project[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&q=80",
     tags: ["education", "web", "platform"],
-    link: "#",
-  },
-  {
-    id: "6",
-    title: "Smart Home Control App",
-    description:
-      "IoT application for managing connected home devices with automation capabilities.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1558002038-bb4237b98681?w=800&q=80",
-    tags: ["iot", "mobile", "app"],
     link: "#",
   },
 ];

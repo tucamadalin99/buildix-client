@@ -54,7 +54,7 @@ const HeroSection = ({ onCTAClick = () => {} }: HeroSectionProps) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setHasGridBuilt(true);
-    }, 2500);
+    }, 1500);
     return () => clearTimeout(timeout);
   }, []);
 
@@ -62,7 +62,7 @@ const HeroSection = ({ onCTAClick = () => {} }: HeroSectionProps) => {
     if (!hasGridBuilt) return;
 
     if (typedLength < subtitleSentence.length) {
-      const delay = 40 + Math.random() * 40;
+      const delay = 40 + Math.random() * 15;
       const timeout = setTimeout(() => {
         setTypedLength((prev) => prev + 1);
       }, delay);
@@ -177,7 +177,7 @@ const HeroSection = ({ onCTAClick = () => {} }: HeroSectionProps) => {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
             <span>{subtitleSentence.slice(0, typedLength)}</span>
-            {typedLength < subtitleSentence.length && hasGridBuilt && (
+            {hasGridBuilt && (
               <motion.span
                 className="inline-block animate-pulse"
                 key="cursor"
@@ -192,9 +192,9 @@ const HeroSection = ({ onCTAClick = () => {} }: HeroSectionProps) => {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 5.5 }}
         >
           <Button
             size="lg"

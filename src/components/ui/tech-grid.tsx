@@ -65,10 +65,10 @@ const TechGrid = () => {
   // Static background style (not animated by Framer Motion)
   const backgroundStyle = useMemo(() => {
     const grid = isDark
-      ? `linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
-       linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)`
-      : `linear-gradient(to right, #A855F7 1px, transparent 1px),
-       linear-gradient(to bottom, #7C3AED 1px, transparent 1px)`;
+      ? `linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
+       linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)`
+      : `linear-gradient(to right, #A855F7 1px, transparent 2px),
+       linear-gradient(to bottom, #7C3AED 1px, transparent 2px)`;
 
     const size = 400; // radius of visible area around cursor in px
 

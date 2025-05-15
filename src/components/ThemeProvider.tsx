@@ -34,7 +34,6 @@ export default function ThemeProvider({
 
   // Toggle between light and dark themes
   const toggleTheme = () => {
-    console.log("THEME");
     setTheme((prevTheme) => {
       const newTheme = prevTheme === "light" ? "dark" : "light";
       if (typeof window !== "undefined") {
@@ -62,7 +61,6 @@ export default function ThemeProvider({
 
   // Check for system preference on initial load
   useEffect(() => {
-    console.log("CHECK SYSTEM");
     if (typeof window !== "undefined" && !localStorage.getItem("theme")) {
       const prefersDark = window.matchMedia(
         "(prefers-color-scheme: dark)"

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
@@ -11,6 +11,9 @@ interface ThemeToggleProps {
 const ThemeToggle = ({ className = "" }: ThemeToggleProps) => {
   const { theme, toggleTheme } = useTheme();
 
+  useEffect(() => {
+    toggleTheme();
+  }, []);
   return (
     <Button
       variant="ghost"

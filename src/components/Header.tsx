@@ -31,7 +31,11 @@ const Header = ({ transparent = false }: HeaderProps) => {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || !transparent ? "bg-background/95 backdrop-blur-sm border-b border-border" : ""}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled || !transparent
+          ? "bg-background/95 backdrop-blur-sm border-b border-border"
+          : ""
+      }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
