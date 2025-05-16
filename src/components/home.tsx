@@ -5,6 +5,7 @@ import CapabilitiesSection from "./CapabilitiesSection";
 import ContactForm from "./ContactForm";
 import Header from "./Header";
 import Footer from "./Footer";
+import HowItWorksSection from "./HowItWorksSection";
 
 function Home() {
   const scrollToProjects = () => {
@@ -20,6 +21,7 @@ function Home() {
       <HeroSection onCTAClick={scrollToProjects} />
       <ProjectsShowcase />
       <CapabilitiesSection />
+      <HowItWorksSection />
       <ContactForm />
       <Footer />
     </div>
