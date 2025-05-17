@@ -73,7 +73,7 @@ export default function HeroSection({
   }, [typedLength, subtitleSentence]);
 
   return (
-    <div
+    <section
       id="home"
       ref={containerRef}
       className="relative overflow-hidden w-full min-h-[800px] bg-background flex items-center justify-center px-4 sm:px-6 lg:px-8"
@@ -207,6 +207,6 @@ export default function HeroSection({
           </Button>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 }
