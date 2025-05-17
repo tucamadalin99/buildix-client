@@ -11,7 +11,9 @@ interface HeroSectionProps {
   onCTAClick?: () => void;
 }
 
-export default function HeroSection({ onCTAClick = () => {} }: HeroSectionProps) {
+export default function HeroSection({
+  onCTAClick = () => {},
+}: HeroSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const subtitleSentence = `We build exceptional web experiences that elevate brands and engage users.`;
 
@@ -61,7 +63,6 @@ export default function HeroSection({ onCTAClick = () => {} }: HeroSectionProps)
   }, []);
 
   useEffect(() => {
-
     if (typedLength < subtitleSentence.length) {
       const delay = 40 + Math.random() * 15;
       const timeout = setTimeout(() => {
@@ -75,7 +76,7 @@ export default function HeroSection({ onCTAClick = () => {} }: HeroSectionProps)
     <div
       id="home"
       ref={containerRef}
-      className="relative w-full min-h-[800px] bg-background flex items-center justify-center px-4 sm:px-6 lg:px-8"
+      className="relative overflow-hidden w-full min-h-[800px] bg-background flex items-center justify-center px-4 sm:px-6 lg:px-8"
     >
       <TechGrid />
 
@@ -208,4 +209,4 @@ export default function HeroSection({ onCTAClick = () => {} }: HeroSectionProps)
       </div>
     </div>
   );
-} 
+}
