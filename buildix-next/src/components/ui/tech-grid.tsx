@@ -89,7 +89,7 @@ const TechGrid = () => {
       WebkitMaskComposite: "destination-in",
       maskComposite: "intersect",
       transition: "mask-image 0.1s ease, -webkit-mask-image 0.1s ease", // Faster transition
-      opacity: 0.15,
+      opacity: isDark ? 0.15 : 0.5,
     };
   }, [isDark, clipProgress, cursor]);
 

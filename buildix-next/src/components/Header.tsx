@@ -43,18 +43,28 @@ export default function Header({ transparent = false }: HeaderProps) {
     { name: "Home", href: "#home" },
     { name: "Projects", href: "#projects" },
     { name: "Capabilities", href: "#capabilities" },
+    { name: "How it works", href: "#howitworks" },
     { name: "Contact", href: "#contact" },
   ];
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
-        scrolled
-          ? "bg-background/95 backdrop-blur-sm border-b border-border"
-          : "bg-transparent border-b border-transparent"
-      }`}
+      className={` top-0 left-0 right-0 z-50 transition-all duration-200 ${scrolled
+          ? "bg-background/95 backdrop-blur-sm border-border"
+          : "bg-transparent border-transparent"
+        }`}
     >
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between lg:grid lg:grid-cols-3 lg:items-center lg:justify-between">
+      
+      <div className="px-4 py-4 box-border flex items-center justify-between xl:grid xl:grid-cols-3 xl:items-center xl:justify-between">
+        
+        <div className="flex-1 flex lg:col-span-1">
+          <Link href="/" className="text-2xl font-bold text-foreground lg:font-extrabold">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[hsl(var(--accent-start))] to-[hsl(var(--accent-end))]">
+              Buildix
+            </span>
+          </Link>
+        </div>
+        
         {/* Desktop Navigation (left) */}
         <nav className="hidden lg:flex items-center space-x-8 col-span-1 justify-start">
           <ul className="flex space-x-8">
@@ -62,7 +72,7 @@ export default function Header({ transparent = false }: HeaderProps) {
               <li key={item.name}>
                 <Link
                   href={item.href}
-                  className="text-foreground/80 hover:text-primary transition-colors duration-200 font-semibold md:font-bold"
+                  className="text-foreground/80 hover:text-primary transition-colors duration-200 font-semibold md:font-bold min-w-fit text-nowrap"
                 >
                   {item.name}
                 </Link>
@@ -70,14 +80,6 @@ export default function Header({ transparent = false }: HeaderProps) {
             ))}
           </ul>
         </nav>
-
-        <div className="flex-1 flex justify-center lg:col-span-1">
-          <Link href="/" className="text-2xl font-bold text-foreground lg:font-extrabold">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[hsl(var(--accent-start))] to-[hsl(var(--accent-end))]">
-              Buildix
-            </span>
-          </Link>
-        </div>
 
         {/* Theme Toggle, i18n (right on desktop), and Globe on mobile */}
         <div className="hidden lg:flex items-center justify-end space-x-4 lg:col-span-1">
@@ -95,13 +97,13 @@ export default function Header({ transparent = false }: HeaderProps) {
               <div className="absolute right-0 mt-2 w-24 bg-background border border-border rounded shadow-lg z-50">
                 <button
                   className="block w-full px-4 py-2 text-left hover:bg-accent"
-                  // onClick={() => setLanguage('ro')}
+                // onClick={() => setLanguage('ro')}
                 >
                   RO
                 </button>
                 <button
                   className="block w-full px-4 py-2 text-left hover:bg-accent"
-                  // onClick={() => setLanguage('en')}
+                // onClick={() => setLanguage('en')}
                 >
                   EN
                 </button>
@@ -112,7 +114,7 @@ export default function Header({ transparent = false }: HeaderProps) {
         </div>
 
         {/* Mobile Menu Button (mobile only) */}
-        <div className="flex items-center lg:hidden space-x-4">
+        <div className="flex items-center lg:hidden">
           <Button
             variant="ghost"
             size="icon"
@@ -132,14 +134,14 @@ export default function Header({ transparent = false }: HeaderProps) {
       {mobileMenuOpen && (
         <motion.div
           className="fixed left-0 right-0 z-40 bg-background/95 backdrop-blur-sm border-t border-border lg:hidden"
-          style={{ top: '64px' }}
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
+          style={{ top: '50px' }}
+          initial={{ x: "-100%"}}
+          animate={{ x: 0 }}
+          exit={{ x: "-100%" }}
           transition={{ duration: 0.3 }}
         >
-          <nav className="container mx-auto px-4 py-4">
-            <ul className="flex flex-col space-y-4">
+          <nav className="px-4 flex flex-col py-4">
+            <ul className=" flex flex-col space-y-4">
               {navItems.map((item) => (
                 <li key={item.name}>
                   <Link
@@ -172,13 +174,13 @@ export default function Header({ transparent = false }: HeaderProps) {
                   <div className="absolute right-0 mt-2 w-24 bg-background border border-border rounded shadow-lg z-50">
                     <button
                       className="block w-full px-4 py-2 text-left hover:bg-accent"
-                      // onClick={() => setLanguage('ro')}
+                    // onClick={() => setLanguage('ro')}
                     >
                       RO
                     </button>
                     <button
                       className="block w-full px-4 py-2 text-left hover:bg-accent"
-                      // onClick={() => setLanguage('en')}
+                    // onClick={() => setLanguage('en')}
                     >
                       EN
                     </button>
@@ -186,7 +188,7 @@ export default function Header({ transparent = false }: HeaderProps) {
                 )}
               </div>
               <ThemeToggle />
-            </div>
+            </div>  
           </nav>
         </motion.div>
       )}
