@@ -1,3 +1,5 @@
+
+
 import React from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useEffect, useState, useMemo } from "react";
@@ -64,12 +66,13 @@ const TechGrid = () => {
     };
   }, []);
 
-  // Static background style (not animated by Framer Motion)
-  const backgroundStyle = useMemo(() => {
-    const grid =`linear-gradient(to right, rgba(255,255,255,0.4) 1px, transparent 1px),
-       linear-gradient(to bottom, rgba(255,255,255,0.4) 1px, transparent 1px)`
 
-    const size = isDark ? 400 : 250; 
+  const backgroundStyle = useMemo(() => {
+    const grid =
+       `linear-gradient(to right, rgba(168, 85, 247,0.8) 1px, transparent 1px),
+       linear-gradient(to bottom, rgba(124, 58, 237,0.8) 1px, transparent 1px)`
+
+    const size = isDark ? 400 : 300; 
 
     const spotlightMask = isDark
       ? `linear-gradient(to right, black ${clipProgress * 100}%, transparent ${
@@ -86,7 +89,7 @@ const TechGrid = () => {
       WebkitMaskComposite: "destination-in",
       maskComposite: "intersect",
       transition: "mask-image 0.1s ease, -webkit-mask-image 0.1s ease", // Faster transition
-      opacity: 0.1,
+      opacity: 0.15,
     };
   }, [isDark, clipProgress, cursor]);
 
@@ -98,6 +101,7 @@ const TechGrid = () => {
         x: translateX,
         y: translateY,
       }}
+      
     />
   );
 };

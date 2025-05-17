@@ -73,6 +73,7 @@ export default function HeroSection({ onCTAClick = () => {} }: HeroSectionProps)
 
   return (
     <div
+      id="home"
       ref={containerRef}
       className="relative w-full min-h-[800px] bg-background flex items-center justify-center px-4 sm:px-6 lg:px-8"
     >

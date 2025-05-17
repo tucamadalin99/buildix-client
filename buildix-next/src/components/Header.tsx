@@ -40,7 +40,7 @@ export default function Header({ transparent = false }: HeaderProps) {
   }, [langMenuOpen]);
 
   const navItems = [
-    { name: "Home", href: "#" },
+    { name: "Home", href: "#home" },
     { name: "Projects", href: "#projects" },
     { name: "Capabilities", href: "#capabilities" },
     { name: "Contact", href: "#contact" },
